@@ -68,15 +68,6 @@ def get_income_statement(xbrl_json):
         income_statement_store[usGaapItem] = pd.Series(values, index=indices)
     return pd.DataFrame(income_statement_store).T
 
-with results_container:
-    st.write("Balance Sheet:")
-    balance_sheet = get_balance_sheet(xbrl_json)
-    balance_sheet_cleaned = clean_balance_sheet(balance_sheet)
-    st.dataframe(balance_sheet_cleaned)
-
-    st.write("Income Statement:")
-    income_statement = get_income_statement(xbrl_json)
-    st.dataframe(income_statement)
 
 # Fetching all 10-Q and 10-K filings for a company and building comprehensive balance sheet
 def fetch_and_process_financial_statements(ticker):
@@ -134,6 +125,8 @@ if st.button('Fetch Financial Statements'):
 
         except Exception as e:
             st.error(f"An error occurred: {e}")
+
+
 
 # Function definitions (like fetch_and_process_financial_statements, get_balance_sheet, etc.) go here
 
